@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitation Mariage Deodat & Ketsia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: url("photo1.jpg") no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-/* fond flou */
+<meta charset="UTF-8">
+<title>Formulaire RSVP</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f5f5f5;
+  }
+  /* fond flou */
     .background {
       position: absolute;
       top: 0; left: 0;
@@ -55,10 +51,20 @@
       z-index: 1;
       animation: fadeIn 3s ease-in-out;
       overflow: hidden;
-      backdrop-filter: blur(2px); /* flou sur le card */
+      backdrop-filter: blur(4px); /* flou sur le card */
     }
-    /* Alliances floues derrière le texte */
-.card::before {
+.form-card {
+  position: absolute;
+  background: rgba(221, 221, 221, 0.85);
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 10;          /* <- assure que la card est au-dessus du fond */
+  pointer-events: auto; /* <- permet de cliquer et écrire dedans */
+}
+ .card::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -68,10 +74,10 @@
   height: 300px;
   background: url('alliances.png') no-repeat center center;
   background-size: contain;
-  filter: blur(2px); /* flou léger */
-  opacity: 0.6; /* légèrement transparent */
+  filter: blur(4px); /* flou léger */
+  opacity: 0.3; /* légèrement transparent */
   z-index: 0; /* derrière le texte */
-}
+}   
      /* Fleurs décoratives */
     .flower {
       position: absolute;
@@ -85,8 +91,7 @@
     .flower.top-right { top: -20px; right: -20px; transform: rotate(20deg); }
     .flower.bottom-left { bottom: -20px; left: -20px; transform: rotate(15deg); }
     .flower.bottom-right { bottom: -20px; right: -20px; transform: rotate(-15deg); }
-
-    h1, p, .btn {
+    h1, h2, p, .btn {
       opacity: 0;
       animation: fadeSlide 1.2s ease forwards;
     }
@@ -97,69 +102,40 @@
       margin-bottom: 10px;
       color: #222;
     }
-
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
     p {
       margin: 5px 0;
       color: #444;
     }
 
-    .date {
-      font-weight: bold;
-      margin: 15px 0;
-      font-size: 1.2rem;
-      color: #000;
-    }
+  form {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 350px;
+  }
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      border-radius: 30px;
-      background: #d4af37;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #b8962f;
-    }
-/* Modal Styles */
-.modal {
-  display: none; 
-  position: fixed;
-  z-index: 10; 
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 15px;
-  width: 80%;
-  max-width: 600px;
-  height: 80%;
-  overflow: hidden;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-iframe {
-  width: 100%;
-  height: 90%;
-  border: none;
-}
-    /* animation apparition */
+  input, select, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  button {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+      /* animation apparition */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -168,10 +144,10 @@ iframe {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-  </style>
+</style>
 </head>
 <body>
-  <div class="background"></div>
+<div class="background"></div>
   <div class="card">
     <!-- fleurs décoratives légèrement floues -->
 <img src="fleur.png" class="flower top-left" alt="fleur" style="filter: blur(2px);">
@@ -179,28 +155,43 @@ iframe {
 <img src="fleur.png" class="flower bottom-left" alt="fleur" style="filter: blur(2px);">
 <img src="fleur.png" class="flower bottom-right" alt="fleur" style="filter: blur(2px);">
 
-  <h1><div class="name">Ketsia</div>
-  <div class="name">&amp;</div>
-  <div class="name">Déodat</div>
-  </h1>
-    <p>ont le plaisir de vous inviter à leur mariage</p>
-    <p class="date">Samedi 18 Octobre 2025</p>
-    <p>Kinshasa, RDC</p>
-    <a>
-    <button class="btn" onclick="window.location.href='formulaire.html'">Confirmer ma présence</button>  
-</a>
-    <p><strong>Dress code :</strong> Noir blanc</p>
+  <form id="rsvpForm">
+    <h2>Confirmez votre présence</h2>
+    <input type="text" name="Nom" placeholder="Nom complet" required>
+    <input type="email" name="Email" placeholder="Email" required>
+    <select name="Présence" required>
+      <option value="">Présence</option>
+      <option value="Oui">Oui</option>
+      <option value="Non">Non</option>
+    </select>
+    <textarea name="Message" placeholder="Message (optionnel)"></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
 </div>
-<script> 
-  // JS pour ouvrir/fermer la modal
-const modal = document.getElementById("rsvpModal");
-const btn = document.getElementById("rsvpBtn");
-const span = document.querySelector(".close");
+  <script>
+    const form = document.getElementById('rsvpForm');
 
-btn.onclick = () => { modal.style.display = "block"; }
-span.onclick = () => { modal.style.display = "none"; }
-window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = Object.fromEntries(new FormData(form).entries());
 
-</script>
+      try {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbzPk1YAMsvp1LBN_b_bBw-xNfrD5WL66frvfwoKTO7BTYqKeizaT-n9DMd1ZqKaiklY8w/exec', {
+          method: 'POST',
+          body: JSON.stringify(formData)
+        });
+        const data = await res.json();
+
+        if(data.result === 'success') {
+          alert('Merci ! Votre présence est confirmée.');
+          window.location.href = 'index.html'; // retourne à la page principale
+        } else {
+          alert('Erreur : ' + data.error);
+        }
+      } catch(err) {
+        alert('Erreur : ' + err);
+      }
+    });
+  </script>
 </body>
 </html>
