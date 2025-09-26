@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url("photo1.jpg") no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+/* fond flou */
+    .background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("photo1.jpg") no-repeat center center/cover;
+      filter: blur(3px) brightness(0.8);
+      z-index: 0;
+
+    }
+    /* voile sombre transparent */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    .rings {
+  width: 80px; /* taille de l'image */
+  margin: 0 auto 20px auto; /* centrer et espacer du texte */
+  display: block;
+  opacity: 0;
+  animation: fadeSlide 1.2s ease forwards;
+  animation-delay: 0.5s; /* apparaît après le titre */
+}
+    .card {
+      background: rgba(221, 221, 221, 0.85);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 410px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 3s ease-in-out;
+      overflow: hidden;
+    }
+    /* Alliances floues derrière le texte */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 330px; /* taille de l'imasge */
+  height: 300px;
+  background: url('alliances.png') no-repeat center center;
+  background-size: contain;
+  filter: blur(2px); /* flou léger */
+  opacity: 0.6; /* légèrement transparent */
+  z-index: 0; /* derrière le texte */
+}
+     /* Fleurs décoratives */
+    .flower {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      opacity: 0.9;
+      z-index: 2;
+    }
+
+    .flower.top-left { top: -20px; left: -20px; transform: rotate(-20deg); }
+    .flower.top-right { top: -20px; right: -20px; transform: rotate(20deg); }
+    .flower.bottom-left { bottom: -20px; left: -20px; transform: rotate(15deg); }
+    .flower.bottom-right { bottom: -20px; right: -20px; transform: rotate(-15deg); }
+
+    h1, p, .btn {
+      opacity: 0;
+      animation: fadeSlide 1.2s ease forwards;
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    p {
+      margin: 5px 0;
+      color: #444;
+    }
+
+    .date {
+      font-weight: bold;
+      margin: 15px 0;
+      font-size: 1.2rem;
+      color: #000;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      border-radius: 30px;
+      background: #d4af37;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #b8962f;
+    }
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 10; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px;
+  height: 80%;
+  overflow: hidden;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+iframe {
+  width: 100%;
+  height: 90%;
+  border: none;
+}
+    /* animation apparition */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="card">
+    <!-- fleurs décoratives légèrement floues -->
+<img src="fleur.png" class="flower top-left" alt="fleur" style="filter: blur(2px);">
+<img src="fleur.png" class="flower top-right" alt="fleur" style="filter: blur(2px);">
+<img src="fleur.png" class="flower bottom-left" alt="fleur" style="filter: blur(2px);">
+<img src="fleur.png" class="flower bottom-right" alt="fleur" style="filter: blur(2px);">
+
+    <h1><div class="name">Ketsia</div>
+  <div class="name">&amp;</div>
+  <div class="name">Déodat</div>
+    </h1>
+    <p>ont le plaisir de vous inviter à leur mariage</p>
+    <p class="date">Samedi 18 Octobre 2025</p>
+    <p>Kinshasa, RDC</p>
+    <a href="#" class="btn" id="rsvpBtn">Confirmer ma présence</a>
+  
+    <!-- Modal -->
+<div id="rsvpModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSewhyzI20EsAa8dqGHtDhnn1BcJBGQqeT--iBmSxvd-sRLAPA/viewform?usp=dialog" width="100%" height="500px" frameborder="0">Chargement…</iframe>
+  </div>
+</div>
+    <p><strong>Dress code :</strong> Noir blanc</p>
+</div>
+<script> 
+  // JS pour ouvrir/fermer la modal
+const modal = document.getElementById("rsvpModal");
+const btn = document.getElementById("rsvpBtn");
+const span = document.querySelector(".close");
+
+btn.onclick = () => { modal.style.display = "block"; }
+span.onclick = () => { modal.style.display = "none"; }
+window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+
+</script>
+</body>
+</html>
