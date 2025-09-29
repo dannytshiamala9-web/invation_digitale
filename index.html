@@ -3,162 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitation Mariage Deodat & Ketsia</title>
+  <title>Invitation Déodat & Ketsia</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: url("photo1.jpg") no-repeat center center/cover;
+      font-family: "Roboto", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* 🔝 Menu fixe */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      z-index: 1000;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* 🔽 Sections */
+    section {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 60px 20px;
       position: relative;
     }
 
-/* fond flou */
-    .background {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url("photo1.jpg") no-repeat center center/cover;
-      filter: blur(3px) brightness(0.8);
-      z-index: 0;
-
+    /* 🎉 Section accueil avec fond flouté */
+    #accueil {
+      background: url("photo1.jpg") no-repeat center/cover;
+      position: relative;
+      color: #fff;
     }
-    /* voile sombre transparent */
-    body::before {
+    #accueil::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px); /* effet flou */
     }
-    .rings {
-  width: 80px; /* taille de l'image */
-  margin: 0 auto 20px auto; /* centrer et espacer du texte */
-  display: block;
-  opacity: 0;
-  animation: fadeSlide 1.2s ease forwards;
-  animation-delay: 0.5s; /* apparaît après le titre */
-}
-    .card {
-      background: rgba(221, 221, 221, 0.85);
+    #accueil .card {
+      position: relative;
+      background: rgba(255,255,255,0.9);
       border-radius: 20px;
       padding: 40px;
-      max-width: 410px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      position: relative;
+      max-width: 600px;
       z-index: 1;
-      animation: fadeIn 3s ease-in-out;
       overflow: hidden;
-      backdrop-filter: blur(2px); /* flou sur le card */
+      
     }
-    /* Alliances floues derrière le texte */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 330px; /* taille de l'imasge */
-  height: 300px;
-  background: url('alliances.png') no-repeat center center;
-  background-size: contain;
-  filter: blur(2px); /* flou léger */
-  opacity: 0.6; /* légèrement transparent */
-  z-index: 0; /* derrière le texte */
-}
-     /* Fleurs décoratives */
+
+    /* 💍 Alliances en arrière-plan */
+    #accueil .card::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url("alliances.png") no-repeat center/contain;
+      opacity: 0.25;
+      filter: blur(2px);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    /* 🌸 Fleurs dans les coins */
     .flower {
       position: absolute;
-      width: 70px;
-      height: 70px;
-      opacity: 0.9;
+      width: 80px;
+      opacity: 0.8;
       z-index: 2;
     }
+    .top-left { top: -20px; left: -20px; }
+    .top-right { top: -20px; right: -20px; }
+    .bottom-left { bottom: -20px; left: -20px; }
+    .bottom-right { bottom: -20px; right: -20px; }
 
-    .flower.top-left { top: -20px; left: -20px; transform: rotate(-20deg); }
-    .flower.top-right { top: -20px; right: -20px; transform: rotate(20deg); }
-    .flower.bottom-left { bottom: -20px; left: -20px; transform: rotate(15deg); }
-    .flower.bottom-right { bottom: -20px; right: -20px; transform: rotate(-15deg); }
-
-    h1, p, .btn {
-      opacity: 0;
-      animation: fadeSlide 1.2s ease forwards;
-    }
-    
-    h1 {
+    #accueil h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 52px;
       margin-bottom: 10px;
-      color: #222;
+      color: #333;
+      position: relative;
+      z-index: 3;
     }
 
-    p {
-      margin: 5px 0;
+    #accueil h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      margin-bottom: 10px;
+      color: #ffffff;
+      position: relative;
+      z-index: 3;
+    }
+    #accueil p {
+      font-size: 20px;
+      margin-bottom: 20px;
       color: #444;
+      position: relative;
+      z-index: 3;
     }
-
-    .date {
-      font-weight: bold;
-      margin: 15px 0;
-      font-size: 1.2rem;
-      color: #000;
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      z-index: 3;
     }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      border-radius: 30px;
-      background: #d4af37;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #b8962f;
-    }
-/* Modal Styles */
-.modal {
-  display: none; 
-  position: fixed;
-  z-index: 10; 
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 15px;
-  width: 80%;
-  max-width: 600px;
-  height: 80%;
-  overflow: hidden;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-iframe {
-  width: 100%;
-  height: 90%;
-  border: none;
-}
     /* animation apparition */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
@@ -168,39 +140,243 @@ iframe {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* 📍 Section détails */
+    #details { background: #f9f9f9; color: #333; }
+.animated-calendar {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background: rgba(255, 245, 248, 0.9);
+  display: inline-block;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  animation: fadeIn 1.2s ease-in-out;
+  backdrop-filter: blur(6px);
+}
+
+.animated-calendar h3 {
+  margin-bottom: 15px;
+  color: #e91e63;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  animation: slideDown 1s ease-in-out;
+}
+
+.animated-calendar table {
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.animated-calendar th {
+  color: #0f0f0f;
+  font-weight: 600;
+  padding-bottom: 8px;
+  font-size: 15px;
+}
+
+.animated-calendar td {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.6);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.animated-calendar td:hover {
+  background: #ffd6e8;
+  transform: scale(1.15) rotate(-2deg);
+}
+
+.animated-calendar .highlight {
+  background: linear-gradient(135deg, #ff4081, #e91e63);
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  transform: scale(1.3);
+  animation: pulse 1.5s infinite;
+}
+.map-container {
+  margin: 20px 0;
+  max-width: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.map-button {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.map-button a {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff4081, #e91e63);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(233,30,99,0.3);
+}
+
+.map-button a:hover {
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(233,30,99,0.5);
+}
+/* ✅ Optimisation mobile */
+@media (max-width: 768px) {
+  iframe {
+    height: 250px;
+    border-radius: 12px;
+  }
+.map-button a {
+    width: 90%;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(233,30,99,0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(233,30,99,0); }
+  100% { box-shadow: 0 0 0 0 rgba(233,30,99,0); }
+}
+
+
+    /* ✅ Section formulaire */
+    #formulaire { background: #e8f5e9; color: #333; }
+    form input {
+      padding: 10px;
+      width: 250px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
-  <div class="background"></div>
-  <div class="card">
-    <!-- fleurs décoratives légèrement floues -->
-<img src="fleur.png" class="flower top-left" alt="fleur" style="filter: blur(2px);">
-<img src="fleur.png" class="flower top-right" alt="fleur" style="filter: blur(2px);">
-<img src="fleur.png" class="flower bottom-left" alt="fleur" style="filter: blur(2px);">
-<img src="fleur.png" class="flower bottom-right" alt="fleur" style="filter: blur(2px);">
 
-  <h1><div class="name">Ketsia</div>
-  <div class="name">&amp;</div>
-  <div class="name">Déodat</div>
-  </h1>
-    <p>ont le plaisir de vous inviter à leur mariage</p>
-    <p class="date">Samedi 18 Octobre 2025</p>
+  <!-- 🔝 Menu -->
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#details">Détails</a>
+    <a href="#formulaire">Confirmer</a>
+  </nav>
+
+  <!-- 🎉 Accueil -->
+  <section id="accueil">
+    <h2><div class="name"; color: #fff;> <strong> The Wedding </strong></div>
+    </h2>
+    <div class="card">
+      <!-- 🌸 Fleurs décoratives -->
+      <img src="fleur.png" class="flower top-left">
+      <img src="fleur.png" class="flower top-right">
+      <img src="fleur.png" class="flower bottom-left">
+      <img src="fleur.png" class="flower bottom-right">
+  
+    <h1><div class="name">Ketsia</div>
+    <div class="name">&amp;</div>
+    <div class="name">Déodat</div>
+    </h1>
+        <p>🎉 Ont le plaisir de vous inviter à leur mariage 🎉</p>
     <p>Kinshasa, RDC</p>
-    <a>
-    <button class="btn" onclick="window.location.href='formulaire.html'">Confirmer ma présence</button>  
-</a>
-    <p><strong>Dress code :</strong> Noir blanc</p>
-</div>
-<script> 
-  // JS pour ouvrir/fermer la modal
-const modal = document.getElementById("rsvpModal");
-const btn = document.getElementById("rsvpBtn");
-const span = document.querySelector(".close");
+      <button onclick="document.getElementById('formulaire').scrollIntoView({behavior:'smooth'})">
+        Confirmer ma présence
+      </button>
+    </div>
+  </section>
 
-btn.onclick = () => { modal.style.display = "block"; }
-span.onclick = () => { modal.style.display = "none"; }
-window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+  <!-- 📍 Détails -->
+  <section id="details">
+<h2><div class="name"> <strong> 📅 Détails de l'événement </strong></div></h2>
+<div class="calendar animated-calendar">
+    <h3>Février 2026</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Lun</th>
+          <th>Mar</th>
+          <th>Mer</th>
+          <th>Jeu</th>
+          <th>Ven</th>
+          <th>Sam</th>
+          <th>Dim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td>1</td>
+        </tr>
+        <tr>
+          <td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+        </tr>
+        <tr>
+          <td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+        </tr>
+        <tr>
+          <td>16</td><td>17</td><td>18</td><td>19</td>
+          <td>20</td>
+          <td class="highlight">21</td><td>22</td>
+        </tr>
+        <tr>
+          <td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+      </tbody>
+    </table>
+  </div>
+      <p class="date"><b>Samedi 21 fevrier 2026</b></p>
+    <p><b>Heure : </b> 14h00</p>
+    <p><b>Lieu : </b> Salle ABC, Kinshasa</p>
 
-</script>
+  </section>
+
+  <!-- ✅ Formulaire -->
+  <section id="formulaire">
+    <h2>Confirmez votre présence</h2>
+    <form>
+      <input type="text" placeholder="Nom complet" required><br>
+      <input type="email" placeholder="Email" required><br>
+      <button type="submit">Envoyer</button>
+    </form>
+<!-- Carte Google Maps -->
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7512720181877!2d15.2897843!3d-4.310764599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a33f20e7c7301%3A0x51a289d2e8f4df37!2sPullman%20Kinshasa%20Grand%20Hotel!5e0!3m2!1sfr!2scd!4v1727609227464!5m2!1sfr!2scd"
+      width="100%" 
+      height="400" 
+      style="border:0; border-radius: 15px;" 
+      allowfullscreen="" 
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <!-- Bouton itinéraire -->
+  <div class="map-button">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Pullman+Kinshasa+Grand+Hotel" target="_blank">
+      📍 Voir l’itinéraire
+    </a>
+  </div>
+  </section>
+
 </body>
 </html>
